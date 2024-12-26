@@ -1,0 +1,15 @@
+fastapi[all]
+uvicorn
+sqlalchemy
+pydantic
+bcrypt
+python-jose[cryptography]
+python-multipart
+openpyxl
+passlib[bcrypt]
+jinja2
+pytest
+pytest-cov
+httpx
+pyjwt==2.10.1
+

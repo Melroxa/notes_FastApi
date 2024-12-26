@@ -1,0 +1,10 @@
+services:
+  fastapi-app:
+    build: .
+    ports:
+      - "8000:8000"  # Прокидываем порт 8000 из контейнера на хост
+    volumes:
+      - .:/app  # Монтируем текущую директорию в контейнер
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: uvicorn app.main:app --host 0.0.0.0 --reload

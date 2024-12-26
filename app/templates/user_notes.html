@@ -1,0 +1,72 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-4">
+  <h2 class="text-center">Добро пожаловать, {{ user.username }}!</h2>
+
+  <div class="text-center mt-3">
+    <a href="/user/user/notes/create" class="btn btn-success"
+      >Добавить заметку</a
+    >
+  </div>
+
+  <div class="row justify-content-center">
+    {% if notes %}
+    <div class="row justify-content-center my-3">
+      <form method="get" action="/user/user/notes/search" class="w-100">
+        <div class="form-group">
+          <label for="note_title" class="form-label"
+            >Выберите заголовок заметки</label
+          >
+          <div class="d-flex align-items-center">
+            <select
+              class="form-control me-2"
+              id="note_title"
+              name="note_title"
+              style="flex: 1"
+            >
+              <option value="">Все заметки</option>
+              {% for note in notes %}
+              <option value="{{ note.title }}">{{ note.title }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary">Поиск</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <p class="text-center mt-4">Ваши заметки:</p>
+    {% for note in notes %}
+    <div class="col-12 mb-4">
+      <div class="card">
+        <div class="card-header text-center bg-light">
+          <h3 class="card-title">{{ note.title }}</h3>
+        </div>
+        <hr class="m-0" />
+        <div class="card-body">
+          <p class="card-text">{{ note.content }}</p>
+          <div class="text-end">
+            <a
+              href="/user/user/notes/{{ note.id }}/edit"
+              class="btn btn-warning btn-sm"
+              >Редактировать</a
+            >
+            <form
+              method="post"
+              action="/user/user/notes/{{ note.id }}/delete"
+              class="d-inline"
+            >
+              <button type="submit" class="btn btn-danger btn-sm">
+                Удалить
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <div class="col-12 text-center">
+      <p class="text-muted">У вас пока нет заметок</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

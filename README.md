@@ -14,7 +14,7 @@
 1. Клонируйте репозиторий:
 
    ```bash
-   git clone https://github.com/your-repo/notes-app.git
+   git clone (https://github.com/Melroxa/notes_FastApi.git)
    cd notes-app
    ```
 
